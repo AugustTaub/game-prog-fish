@@ -15,6 +15,10 @@ run/main_scene="uid://3jjouvt1wd3j"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://2D/icon.svg"
 
+[global_group]
+
+water=""
+
 [input]
 
 up={

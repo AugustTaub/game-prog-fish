@@ -2,14 +2,49 @@
 
 [ext_resource type="PackedScene" uid="uid://cv0klkobsceiv" path="res://scenes/player.tscn" id="1_o5qli"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(1176, 224)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o5qli"]
+a = Vector2(-61, 0)
+b = Vector2(141, 1)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sgp6g"]
 
 [node name="main" type="Node2D" unique_id=847500058]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1329372826]
-position = Vector2(0, 605)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1392321202]
-shape = SubResource("WorldBoundaryShape2D_sgp6g")
-
 [node name="CharacterBody2D" parent="." unique_id=555049767 instance=ExtResource("1_o5qli")]
+position = Vector2(520, 352)
+
+[node name="water" type="Area2D" parent="." unique_id=1159108126 groups=["water"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water" unique_id=322833785 groups=["water"]]
+position = Vector2(578, 557)
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="Polygon2D" type="Polygon2D" parent="water" unique_id=1571237712]
+position = Vector2(439, 578)
+color = Color(0.43137255, 1, 1, 0.25882354)
+polygon = PackedVector2Array(-456, -135, 752, -140, 734, 134, -458, 123)
+uv = PackedVector2Array(-154.4, -57.999996, 122.39996, -66, 112.79999, 41.200005, -181.6, 46.799995)
+
+[node name="boat" type="RigidBody2D" parent="." unique_id=284093708]
+position = Vector2(413, 420)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boat" unique_id=1583522801]
+position = Vector2(70, 13)
+shape = SubResource("SegmentShape2D_o5qli")
+one_way_collision = true
+
+[node name="Polygon2D" type="Polygon2D" parent="boat" unique_id=388846836]
+position = Vector2(161, 71)
+color = Color(0.5467297, 0.19922552, 0.11073918, 0.25882354)
+polygon = PackedVector2Array(-145.59995, -58.799995, 51.200073, -60.399994, 66.400024, 3.5999985, 15.200043, 28.400002, -143.99994, 16.400002, -179.99994, -26.799995)
+uv = PackedVector2Array(-145.59995, -58.799995, 51.200073, -60.399994, 66.400024, 3.5999985, 15.200043, 28.400002, -143.99994, 16.400002, -179.99994, -26.799995)
+
+[node name="death_plane" type="Area2D" parent="." unique_id=1407711153 groups=["death_plane"]]
+position = Vector2(508, 774)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_plane" unique_id=318236706 groups=["death_plane"]]
+shape = SubResource("WorldBoundaryShape2D_sgp6g")
