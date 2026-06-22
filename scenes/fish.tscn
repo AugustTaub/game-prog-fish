@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b8abp7qxar8tv"]
+
+[ext_resource type="Script" uid="uid://bdj58kq3i5kq4" path="res://scripts/fish.gd" id="1_n6yr6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_682rw"]
+radius = 44.0
+height = 170.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6yr6"]
+radius = 32.984844
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1335401560]
+script = ExtResource("1_n6yr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286531090]
+position = Vector2(-39, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_682rw")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1320628547]
+color = Color(1, 0.27058825, 0.37254903, 1)
+polygon = PackedVector2Array(-137.6, -35.6, -141.6, 43.6, -93.600006, 19.599998, -52.799988, 33.200005, -0.8000183, 37.200005, 21.600006, 26, 45.599976, 10.800003, 15.199982, 2.800003, 60.799988, -10, 35.200012, -40.399998, 8.799988, -47.599995, -16, -53.199997, -50.399994, -70.799995, -58.399994, -41.999996, -78.399994, -24.399994, -96, -19.599998)
+uv = PackedVector2Array(-137.6, -35.6, -141.6, 43.6, -93.600006, 19.599998, -52.799988, 33.200005, -0.8000183, 37.200005, 21.600006, 26, 45.599976, 10.800003, 15.199982, 2.800003, 60.799988, -10, 35.200012, -40.399998, 8.799988, -47.599995, -16, -53.199997, -50.399994, -70.799995, -58.399994, -41.999996, -78.399994, -24.399994, -96, -19.599998)
+
+[node name="mouth_area" type="Area2D" parent="." unique_id=2079430979]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouth_area" unique_id=1641174173]
+position = Vector2(35, -1)
+shape = SubResource("CircleShape2D_n6yr6")
+debug_color = Color(0.74120706, 0.43703726, 0.4444819, 0.41960785)
