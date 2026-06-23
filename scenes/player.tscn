@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://cv0klkobsceiv"]
 
 [ext_resource type="Script" uid="uid://b78w8ogxng35j" path="res://scripts/player_control.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://bph3y2mwnqukp" path="res://2D/icon.svg" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://b3u2n6ab4cdgy" path="res://2D/mainchar.png" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(65.5, 102.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=555049767]
-script = ExtResource("1_g2els")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(70, 169)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1148497406]
-scale = Vector2(0.5, 0.797)
-texture = ExtResource("2_qhqgy")
+[sub_resource type="Gradient" id="Gradient_g2els"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+
+[node name="player" type="CharacterBody2D" unique_id=555049767]
+script = ExtResource("1_g2els")
 
 [node name="player_coll_shape" type="CollisionShape2D" parent="." unique_id=62768261]
 position = Vector2(0.5, 0.5)
@@ -22,3 +27,22 @@ shape = SubResource("RectangleShape2D_dqkch")
 [node name="player_coll_shape" type="CollisionShape2D" parent="detect_area" unique_id=1754491015]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="vis_body" type="Node2D" parent="." unique_id=1753934947]
+
+[node name="sprite" type="Sprite2D" parent="vis_body" unique_id=1148497406]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_g2els")
+
+[node name="attack_area" type="Area2D" parent="." unique_id=2028628815]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area" unique_id=833297517]
+position = Vector2(0, 133.5)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="attack_sprite" type="Sprite2D" parent="." unique_id=1836327194]
+visible = false
+position = Vector2(3.8974266, 138.18332)
+rotation = 1.5707964
+scale = Vector2(0.7016027, 74.70001)
+texture = SubResource("GradientTexture1D_qhqgy")

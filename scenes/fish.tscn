@@ -9,10 +9,10 @@ height = 170.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_n6yr6"]
 radius = 32.984844
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1335401560]
+[node name="fish" type="CharacterBody2D" unique_id=1335401560 groups=["can_be_pogod"]]
 script = ExtResource("1_n6yr6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286531090]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286531090 groups=["can_be_pogod"]]
 position = Vector2(-39, -4)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_682rw")

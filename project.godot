@@ -22,6 +22,7 @@ SignalBus="*uid://cqon2v642bsfv"
 [global_group]
 
 water=""
+can_be_pogod=""
 
 [input]
 
