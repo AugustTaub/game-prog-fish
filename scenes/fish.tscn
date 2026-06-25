@@ -28,3 +28,11 @@ uv = PackedVector2Array(-137.6, -35.6, -141.6, 43.6, -93.600006, 19.599998, -52.
 position = Vector2(35, -1)
 shape = SubResource("CircleShape2D_n6yr6")
 debug_color = Color(0.74120706, 0.43703726, 0.4444819, 0.41960785)
+
+[node name="health_bar" type="ProgressBar" parent="." unique_id=2056942853]
+offset_left = -131.0
+offset_top = -108.0
+offset_right = 61.0
+offset_bottom = -81.0
+max_value = 1.0
+value = 1.0

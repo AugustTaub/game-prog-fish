@@ -15,6 +15,18 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qhqgy"]
 gradient = SubResource("Gradient_g2els")
 
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+offsets = PackedFloat32Array(0, 0.63221157, 0.68509614)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
+radius = 70.40597
+
 [node name="player" type="CharacterBody2D" unique_id=555049767]
 script = ExtResource("1_g2els")
 
@@ -46,3 +58,14 @@ position = Vector2(3.8974266, 138.18332)
 rotation = 1.5707964
 scale = Vector2(0.7016027, 74.70001)
 texture = SubResource("GradientTexture1D_qhqgy")
+
+[node name="grab_sprite" type="Sprite2D" parent="." unique_id=73472348]
+visible = false
+rotation = 1.5707964
+scale = Vector2(2.235, 2.235)
+texture = SubResource("GradientTexture2D_dqkch")
+
+[node name="grab_area" type="Area2D" parent="." unique_id=1154296296]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grab_area" unique_id=574139997]
+shape = SubResource("CircleShape2D_qlg0r")

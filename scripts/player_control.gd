@@ -11,9 +11,16 @@ const AIRFRICTION = 10.0
 
 var is_doing_flip: bool = false
 
+var is_grabbing: bool = false
+var grabbed_enemy: CharacterBody2D = null
+
+var grab_damage_timer: float = 0
+
 @onready var start_pos: Vector2 = global_position
 
 func _physics_process(delta: float) -> void:
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		if is_doing_flip:
@@ -41,17 +48,56 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, AIRFRICTION)
 	
 	#attack
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("attack"):
 		
 		var bodies = $attack_area.get_overlapping_bodies()
 		for body: PhysicsBody2D in bodies:
-			print(body)
+			
 			if body.is_in_group("can_be_pogod"):
 				velocity.y = POGO_VELOCITY
+			
+			if body is FishEnemy:
+				body.take_damage(10)
 			
 		
 		$attack_sprite.show()
 		get_tree().create_timer(delta*4).timeout.connect(func(): $attack_sprite.hide())
+	
+	#grab
+	
+	var just_grabbed: bool = false
+	
+	if Input.is_action_just_pressed("grab") and not is_grabbing:
+		
+		var bodies = $grab_area.get_overlapping_bodies()
+		for body: PhysicsBody2D in bodies:
+			
+			if body is FishEnemy:
+				is_grabbing = true
+				grabbed_enemy = body
+				
+				$player_coll_shape.disabled = true
+				
+				just_grabbed = true
+				
+				grab_damage_timer = 0
+		
+		$grab_sprite.show()
+		get_tree().create_timer(delta*4).timeout.connect(func(): $grab_sprite.hide())
+	
+	if grabbed_enemy != null and is_grabbing and not just_grabbed:
+		grab_damage_timer += delta
+		
+		global_position = grabbed_enemy.global_position
+		
+		if grab_damage_timer > 0.2:
+			grabbed_enemy.take_damage(10)
+			grab_damage_timer = 0
+		
+		if Input.is_action_just_pressed("grab"):
+			is_grabbing = false
+			grabbed_enemy = null
+			$player_coll_shape.disabled = false
 	
 	
 	var direction := Input.get_axis("left", "right")
@@ -64,7 +110,8 @@ func _physics_process(delta: float) -> void:
 	
 	$vis_body/sprite.flip_h = velocity.x < 0
 	
-	move_and_slide()
+	if not is_grabbing:
+		move_and_slide()
 	
 	if is_touching_death_plane():
 		die()
